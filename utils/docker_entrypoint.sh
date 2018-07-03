@@ -16,6 +16,9 @@ groupadd -g $GROUP_ID -r aosp && \
 useradd -u $USER_ID --create-home -r -g aosp aosp
 echo "$msg - done"
 
+echo "aosp:aosp" | chpasswd
+echo 'aosp ALL=(ALL) ALL' >> /etc/sudoers
+
 cp /root/.gitconfig /home/aosp/.gitconfig
 chown aosp:aosp /home/aosp/.gitconfig
 
