@@ -25,7 +25,14 @@ RUN echo "APT::Install-Recommends 0;" >> /etc/apt/apt.conf.d/01norecommends \
  && apt-get install -y openjdk-6-jdk \
  && apt-get install -y fakeroot \
  && apt-get install -y sudo \
+#for el817 gcc4.4
+ && apt-get install -y gcc-4.4 \
+ && apt-get install -y g++-4.4 \
  && rm -rf /var/lib/apt/lists/*
+
+#for el817 gcc4.4
+RUN rm /usr/bin/gcc && ln -s /usr/bin/gcc-4.4 /usr/bin/gcc
+RUN rm /usr/bin/g++ && ln -s /usr/bin/g++-4.4 /usr/bin/g++
 
 # All builds will be done by user aosp
 COPY gitconfig /root/.gitconfig
